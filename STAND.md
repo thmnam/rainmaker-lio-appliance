@@ -22,7 +22,16 @@ Eigenbau auf ESP32-S3 mit XMOS-Mikrofonfeld, 2.1-Lautsprecher und Holzgehäuse (
 
 ## Vendasta
 
-Am 04.11.2026 ging eine kurze Mail "AI Workforce Conversation API" an Jehan Zouak, Dustin Walker und Josh Baker, ohne sichtbare Antwort. Ein ausführlicher Nachfass liegt als Gmail-Entwurf bereit und ist **nicht gesendet**. Text: `docs/vendasta/anfrage-nachfass.md`.
+Am 04.11.2026 ging eine kurze Mail "AI Workforce Conversation API" an Jehan Zouak, Dustin Walker und Josh Baker, ohne sichtbare Antwort. Der ausführliche Nachfass vom 13.11.2026 ist gesendet. Text: `docs/vendasta/anfrage-nachfass.md`.
+
+## Vendasta
+
+Antwort vom 13.11.2026 (Tobin Arul): Das Team meldet sich dazu, welche der Wege verfügbar sind. Eine inhaltliche Antwort steht noch aus.
+
+## Entwürfe im Repo
+
+- `docs/loratech/fragenkatalog.md` für das Partnergespräch
+- `docs/phase-0/b27-testplan.md` mit den zu entscheidenden Punkten
 
 ## Nicht belegt
 
