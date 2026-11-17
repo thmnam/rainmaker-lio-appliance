@@ -26,7 +26,9 @@ Am 04.11.2026 ging eine kurze Mail "AI Workforce Conversation API" an Jehan Zoua
 
 ## Vendasta
 
-Antwort vom 13.11.2026 (Tobin Arul): Das Team meldet sich dazu, welche der Wege verfügbar sind. Eine inhaltliche Antwort steht noch aus.
+Antwort vom 16.11.2026 (Tobin Arul): Text-API, eigener Kanal in Konversationen und Sprach-API ohne Rufnummer gibt es nicht, ohne Termin. Geplant ist ein MCP-Zugang zu den Plattform-Werkzeugen, angepeilt später im ersten Quartal 2027, ohne Zusage.
+
+Möglicher Umweg über dokumentierte Bausteine (API-Aufruf startet Automation, KI-Mitarbeiter beantwortet, Webhook liefert die Antwort): `docs/vendasta/workaround-automation-kette.md`. Noch nicht getestet.
 
 ## Entwürfe im Repo
 
