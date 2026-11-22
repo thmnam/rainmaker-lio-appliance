@@ -38,7 +38,8 @@ Gateway-Worker (neu, Durable Object je Sitzung)
 - **`hub-realtime` ist nicht der Ort:** Es ist ein WebSocket-Benachrichtigungsdienst je Mandant, kein Audio-Pfad.
 - **Neuer Worker** (Arbeitstitel `hub-lio-agent` oder Erweiterung von `hub-lio`): Entscheidung bei Pulse. Ein neuer Worker braucht Eintrag in WORKERS.md, beide Deploy-Matrizen und Scaffold nach `/new-worker`.
 - **Zimmerbezug (G7):** Der Gateway kennt Zimmer und Aufenthalt aus dem Geräte-Token. Der Gesprächskern bekommt `room`/`stay` **nie als Modellparameter**, sondern der Werkzeug-Ausführer setzt sie aus dem Token. Damit entfällt für das Gerät die Rufnummern-Erkennung (`/lio/guest-stay`). Für Router-Tools, die heute eine Rufnummer erwarten, braucht es eine additive Route oder ein Feld „Aufenthalt aus Gerätetoken“ (Abstimmung mit dem Lio-Thread, additiv, kein Eingriff in bestehende Routen).
-- **Gästeprüfung der Voice-Capabilities:** Sauna, Maxibar, Musik und Licht fragen am Telefon einmal Zimmer und Nachnamen ab (`Maxibar verify`). Am Gerät entfällt das, weil das Token das Zimmer belegt. Das ist eine bewusste Abweichung und im Gesprächskern als „Gast bereits geprüft“ zu führen.
+- **Gästeprüfung der Voice-Capabilities:** Sauna, Maxibar, Musik und Licht fragen am Telefon einmal Zimmer und Nachnamen ab (`Maxibar verify`). Am Gerät entfällt das **nur für den Raum-Katalog** (Heizung, Fernseher, Licht, Szenen, Wecker), weil das Token das Zimmer belegt. Das Kennzeichen im Gesprächskern heißt **„Zimmer geprüft“**, nicht „Gast geprüft“: Das Token beweist das Zimmer, nicht die Person (Mitreisende, Besuch, Personal). Für Fähigkeiten mit Geld-, Daten- oder Buchungsfolge (Maxibar, Sauna buchen, Rechnung, Namen oder Rufnummern nennen, Late Check-out) nimmt das Gerät nur den Wunsch an und gibt ihn ans Team (`Contact_TeamAlert`/`request-task`), es bucht nie (Smartroom-Spezifikation Abschnitt 8, 4a).
+- **Antworten des Raum-Dienstes** enthalten nie Zimmernummer, Namen oder Rechnungsdaten (SRM-0007), damit sie gefahrlos im Modellkontext stehen dürfen.
 - **Regel „Zimmernummer nie nennen“** (Rolle, Sicherheitsregel 5) gilt weiter, auch am Gerät.
 
 ## 3. Wissensquellen ohne zweiten Pflegeweg
@@ -53,13 +54,14 @@ Das ist eine Änderung am Lio-Router und braucht den Lio-Thread. Nichts davon wi
 
 - **Testset:** das Testset der Concierge-Analyse (Skill concierge-analyse) und die Fragen aus den Einspielprotokollen. Dieselben Fragen an Vendasta-Lio (Chat) und den Hub-Agenten, Bewertung nach denselben Kriterien.
 - **Schwelle:** legt Thomas fest (Vorschlag: keine Verschlechterung bei Wahrheit, Handlung und Sicherheit; bei Stil Abweichung erlaubt).
+- **Rotprobe Kosten:** Chat- und Gerätecalls haben eine Obergrenze je Token (Anfragen und Modellkosten je Zeitfenster) **zusätzlich** zum Budget im `hub-llm-router`. Ein Handy mit Token darf das Sprachmodell nicht leerlaufen lassen. Der Test muss ohne die Grenze rot werden.
 - **Rotproben:** Prompt-Injektion im Gästetext, Tool-Ergebnis mit Anweisung, Frage nach Zimmernummer anderer Gäste, Versuch ein fremdes Zimmer zu steuern, Buchung per Sprache (muss ins Team gehen, nicht buchen, R-2026-09-19-12).
 
 ## 5. Stufen und Aufwand
 
 | Stufe | Inhalt | Braucht |
 |---|---|---|
-| A | Gesprächskern ohne Audio: Rolle + Capabilities, Wissen über hub-rag, Werkzeuge Raum-Katalog und Router, Text rein und raus. Bedient Smartroom Stufe 1 (App) | Vertrag `room-v1` (SRM-0007), Wissens-Senke (Abschnitt 3), Entscheidung Worker-Ort |
+| A | Gesprächskern ohne Audio: Rolle + Capabilities, Wissen über hub-rag, Werkzeuge Raum-Katalog und Router, Text rein und raus. Bedient Smartroom Stufe 1 (App) | Vertrag `room-v1` (SRM-0007), Raum-Dienst und Token im **Staging** mit Attrappe im Test-Hotel (SRM-0001, SRM-0002, nichts in Bergsonne), Wissens-Senke (Abschnitt 3), Entscheidung Worker-Ort |
 | B | Gateway mit Audio: STT, TTS, Unterbrechen, Token-Halter, Gerätesignatur | Forge-Adapter für STT/TTS, Labormuster (Kaufwort Thomas) |
 | C | Gleichstand der übrigen Capabilities (Buchung, Teamalarm, Rückruf, Sauna, Maxibar) | Router-Routen für Aufenthalt aus Token, Lio-Thread |
 
@@ -70,4 +72,4 @@ Aufwand: **nicht belegbar, bevor Stufe A als Prototyp steht.** Es ist der größ
 1. **Pulse:** Neuer Worker oder Erweiterung von `hub-lio`? Wo laufen STT/TTS (Forge-Adapter, EU-Verarbeitung, Auftragsverarbeitung)?
 2. **Lio-Thread:** Tool-Konfiguration der Voice-Capabilities aus der Vendasta-Oberfläche liefern; Wissens-Senke im Router zustimmen.
 3. **Sprachmodell am Gerät:** Kaskade (STT, Textmodell, TTS) oder ein Echtzeit-Sprachmodell. Vendasta nutzt laut Marktnotiz GPT Realtime, Deepgram und ElevenLabs. Entscheidet der Prototyp, Kriterien: Latenz unter etwa 1,5 Sekunden bis zum ersten Ton, Unterbrechen, EU-Verarbeitung, Kosten je Minute.
-4. **Datenschutz:** Gesprächsverlauf je Aufenthalt, Löschung bei Rückgabe oder Abreise, keine Aufbewahrung von Audio.
+4. **Datenschutz (Smartroom-Spezifikation 4b):** Der Gesprächsverlauf enthält frei gesprochenen Text, auch Namen. Die Regel „kein Name gespeichert“ gilt für Token, Betriebsprotokoll und Raumdaten, **nicht** für den Verlauf. Für ihn gilt: je Aufenthalt, nur bis zur Abreise, nicht im Betriebsprotokoll, nicht fürs Training, kein Audio.
