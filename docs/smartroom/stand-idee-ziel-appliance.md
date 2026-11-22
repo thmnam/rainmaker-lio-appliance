@@ -32,3 +32,10 @@ Ein offenes Sprachgerät fürs Gästezimmer, das nur Lio kann: Gast sagt „Weck
 - **G5** Ja zur CE-Klärung mit externer Stelle.
 - **G10** Kaufwort für Laborgeräte (bis etwa 500 Euro) und Ergebnis von B-27. Ohne beides kein Labor.
 - Zugriff auf das Controller-Repo `bergsonne-smartbuilding` aus diesem Thread: keiner, nur nach Thomas' Wort.
+
+## Nachtrag 22.11. 19:43: Ziele von Thomas
+- **Für den Gast:** Sauna, Maxibar, persönlicher Lio mit allen Funktionen. Ziel 1 Gästefreude.
+- **Fürs Haus:** Alles aus, wenn niemand im Zimmer; Heizung aus bei offenem Fenster; Wasserschaden und Rauchmelder (Smartroom-Konzept 15 und 16.4). Ziel 2 perfekter Betrieb. Das Gerät wirkt dabei nur als Ansage im Zimmer mit, nie als Melder, und hört nicht auf Anwesenheit (kein Audio vor dem Wake-Word).
+- **Aufwand Pilot:** 100 bis 300 Euro je Zimmer. Meine Annahme für das Gerät allein liegt bei 150 bis 350 Euro, ohne Ventil und Sensoren. Offen, ob das Gerät in diesem Rahmen liegt.
+- **Voice braucht Internet:** als Hinweis in den Grenzen entfernt (Lesart des Koordinators). Technisch bleibt es wahr, solange Sprache zu Text im Hub läuft.
+- Sauna und Maxibar per Sprache: Vorschlag Stufenprüfung in `docs/gateway/gespraechskern-und-gateway-entwurf-v0.md`, Abschnitt 2a, Entscheidung Thomas steht aus.

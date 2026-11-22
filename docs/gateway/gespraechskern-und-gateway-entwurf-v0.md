@@ -42,6 +42,17 @@ Gateway-Worker (neu, Durable Object je Sitzung)
 - **Antworten des Raum-Dienstes** enthalten nie Zimmernummer, Namen oder Rechnungsdaten (SRM-0007), damit sie gefahrlos im Modellkontext stehen dürfen.
 - **Regel „Zimmernummer nie nennen“** (Rolle, Sicherheitsregel 5) gilt weiter, auch am Gerät.
 
+### 2a. Gästefunktionen Sauna und Maxibar am Gerät (Ziel Thomas 22.11. 19:43), Vorschlag mit Stufenprüfung
+
+Thomas will für den Gast Sauna, Maxibar und einen persönlichen Lio mit allen Funktionen. Bestand: Die Voice-Capabilities **buchen heute per Sprache** (Sauna: `book`, `rebook`, `cancel`; Maxibar: `add_items` auf den digitalen Deckel, abgerechnet bei Abreise), nach Gästeprüfung per Zimmer und Nachname (`Maxibar verify`), nach Wiederholung und ausdrücklichem „Ja“ des Gastes. Das widerspricht nicht der Hub-Entscheidung R-2026-09-19-12, wenn man sie so liest: **Verboten ist, dass ein Geräteereignis automatisch etwas verbucht (kein Auto-Posting, kein Scan oder Sensor als Auslöser).** Eine vom Gast ausdrücklich bestätigte Bestellung ist keine Gerätewirkung.
+
+Vorschlag Stufen am Gerät:
+1. **Zimmer geprüft** (Token): Raum-Katalog, Wecker, Musik, Auskünfte.
+2. **Person geprüft** (Stufenprüfung wie heute am Telefon: Zimmer und Nachname im Gespräch, gilt für das Gespräch): Sauna buchen, Maxibar buchen, persönliche Funktionen. Für das fest installierte Gerät im Zimmer gilt zusätzlich Wiederholung und ausdrückliches „Ja“. Maximal ein Posten ohne erneute Bestätigung, Betragsgrenze je Gespräch (Vorschlag, Haus legt fest).
+3. **Nur Wunsch ans Team:** Rechnung, Late Check-out, Namen oder Rufnummern nennen.
+
+Das ist **strenger Gleichstand mit dem Telefon**, nicht lockerer. Es weicht von der Regel in Smartroom-Spezifikation Abschnitt 8, 4a ab (dort ist alles mit Geldfolge „nur Wunsch ans Team“). **Entscheidung Thomas nötig (G13 erweitert).** Bis dahin gilt 4a.
+
 ## 3. Wissensquellen ohne zweiten Pflegeweg
 
 Der Lio-Thread hat die Hoheit über die Wissensbasis, Einspielen läuft über den Router (Admin-Schlüssel nur bei Thomas). Vorschlag:
