@@ -51,7 +51,7 @@ Vorschlag Stufen am Gerät:
 2. **Person geprüft** (Stufenprüfung wie heute am Telefon: Zimmer und Nachname im Gespräch, gilt für das Gespräch): Sauna buchen, Maxibar buchen, persönliche Funktionen. Für das fest installierte Gerät im Zimmer gilt zusätzlich Wiederholung und ausdrückliches „Ja“. Maximal ein Posten ohne erneute Bestätigung, Betragsgrenze je Gespräch (Vorschlag, Haus legt fest).
 3. **Nur Wunsch ans Team:** Rechnung, Late Check-out, Namen oder Rufnummern nennen.
 
-Das ist **strenger Gleichstand mit dem Telefon**, nicht lockerer. Es weicht von der Regel in Smartroom-Spezifikation Abschnitt 8, 4a ab (dort ist alles mit Geldfolge „nur Wunsch ans Team“). **Entscheidung Thomas nötig (G13 erweitert).** Bis dahin gilt 4a.
+Das ist **strenger Gleichstand mit dem Telefon**, nicht lockerer. Es weicht von der Regel in Smartroom-Spezifikation Abschnitt 8, 4a ab (dort ist alles mit Geldfolge „nur Wunsch ans Team“). **Entschieden von Thomas am 22.11. (19:48): Ja, das Gerät darf alles, was Lio kann**, also auch Sauna und Maxibar buchen (Prüfung wie am Telefon, Betragsgrenze wie vorgeschlagen, Höhe legt das Haus fest). Die Regel „nur Wunsch ans Team“ ist für das Gerät aufgehoben, Smartroom-Spezifikation 4a wird angepasst. „Alles, was Lio kann“ heißt: der heutige Funktionsumfang des Telefon-Lio. Was Lio heute nicht kann (Rechnung einsehen, Late Check-out) bleibt Stufe 3 (nur Wunsch ans Team) beziehungsweise App-Schaltfläche, bis Thomas es einzeln freigibt. Die Hub-Entscheidung R-2026-09-19-12 ist so gelesen: kein Auto-Posting durch Geräteereignisse, bestätigte Gästebestellung erlaubt (Abgleich mit Smartroom läuft).
 
 ## 3. Wissensquellen ohne zweiten Pflegeweg
 

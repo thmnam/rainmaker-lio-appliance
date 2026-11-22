@@ -39,3 +39,4 @@ Ein offenes Sprachgerät fürs Gästezimmer, das nur Lio kann: Gast sagt „Weck
 - **Aufwand Pilot:** 100 bis 300 Euro je Zimmer. Meine Annahme für das Gerät allein liegt bei 150 bis 350 Euro, ohne Ventil und Sensoren. Offen, ob das Gerät in diesem Rahmen liegt.
 - **Voice braucht Internet:** als Hinweis in den Grenzen entfernt (Lesart des Koordinators). Technisch bleibt es wahr, solange Sprache zu Text im Hub läuft.
 - Sauna und Maxibar per Sprache: Vorschlag Stufenprüfung in `docs/gateway/gespraechskern-und-gateway-entwurf-v0.md`, Abschnitt 2a, Entscheidung Thomas steht aus.
+- **Entscheidung 22.11. 19:48:** Das Gerät darf alles, was Lio kann (Sauna und Maxibar buchen, Prüfung wie am Telefon, Betragsgrenze). Das Lio-Gerät wird **separat** zum Zimmerrahmen von 100 bis 300 Euro geführt.
