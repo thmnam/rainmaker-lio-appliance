@@ -23,7 +23,15 @@ Offen (Phase 1, nur lesen beim Controller): Liefert der Controller die Playlists
 - **Im Gerät, nicht im Hub-Katalog:** Gerätelautstärke, Stumm, LED, Stummschalter (stromlos). Der Hardware-Stummschalter gewinnt immer.
 - **Weckruf:** `wake.set` und `wake.cancel` liegen im Raum-Katalog des Smartrooms, das Gerät ruft sie nur auf.
 
-## 3. Ausleih-Ablauf als Anforderung an die Cockpit-Oberfläche (G16)
+## 3. Cockpit-Oberfläche für Geräte (G16): Betriebsart `fixed` (Installieren) und `stay` (Ausleihe)
+
+Entscheidung Thomas 22.11.: im Smartroom (Bergsonne) ist das Gerät **fest** (`binding: fixed`), ohne Smartroom **mobil** (`binding: stay`). Beide nutzen dieselbe Geräteseite.
+
+**Installieren (`fixed`, Rolle Technik, nach Smartroom-Spezifikation v1.3):** Technik wählt im Cockpit das Gerät (Sockel-Tag oder QR) und das **Zimmer aus der Zimmerliste**, bestätigt den Koppelcode. Das Token hängt am Zimmer plus Gerät, hat keinen Ablauf mit dem Aufenthalt, ist aber erneuerbar und sperrbar. Gastwünsche nimmt das Gerät nur bei `InHouse`. Umsetzen in ein anderes Zimmer nur durch Technik, mit Protokoll. Rezeption gibt in dieser Betriebsart nicht aus.
+
+**Ausleihe (`stay`, Rezeption):** der folgende Ablauf, Details in `abgleich-und-schnittstelle-2026-11-22.md` Abschnitt 6 Q1. Er gilt **nur** für die Betriebsart `stay`.
+
+## 3a. Anforderungen an die Staff-Seite
 
 Ablauf siehe `abgleich-und-schnittstelle-2026-11-22.md`, Abschnitt 6, Q1. Anforderungen an die Staff-Seite (Bau durch Pulse, Anforderung gemeinsam mit Smartroom):
 
