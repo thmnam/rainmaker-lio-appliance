@@ -27,15 +27,15 @@ Offen (Phase 1, nur lesen beim Controller): Liefert der Controller die Playlists
 
 Entscheidung Thomas 22.11.: im Smartroom (Bergsonne) ist das Gerät **fest** (`binding: fixed`), ohne Smartroom **mobil** (`binding: stay`). Beide nutzen dieselbe Geräteseite.
 
-**Installieren (`fixed`, Rolle Technik, nach Smartroom-Spezifikation v1.3):** Technik wählt im Cockpit das Gerät (Sockel-Tag oder QR) und das **Zimmer aus der Zimmerliste**, bestätigt den Koppelcode. Das Token hängt am Zimmer plus Gerät, hat keinen Ablauf mit dem Aufenthalt, ist aber erneuerbar und sperrbar. Gastwünsche nimmt das Gerät nur bei `InHouse`. Umsetzen in ein anderes Zimmer nur durch Technik, mit Protokoll. Die Ausgabe-Rolle gibt in dieser Betriebsart nicht aus.
+**Installieren (`fixed`, Rolle Technik, nach Smartroom-Spezifikation v1.3):** Technik wählt im Cockpit das Gerät (Sockel-Tag oder QR) und das **Zimmer aus der Zimmerliste**, bestätigt den Koppelcode. Das Token hängt am Zimmer plus Gerät, hat keinen Ablauf mit dem Aufenthalt, ist aber erneuerbar und sperrbar. Gastwünsche nimmt das Gerät nur bei `InHouse`. Umsetzen in ein anderes Zimmer nur durch Technik, mit Protokoll. Die Rolle „Team“ gibt in dieser Betriebsart nicht aus (Technik installiert).
 
-**Ausleihe (`stay`, Rolle des Teams für die Ausgabe, früher „Rezeption“ genannt; das Haus hat keine Rezeption):** der folgende Ablauf, Details in `abgleich-und-schnittstelle-2026-11-22.md` Abschnitt 6 Q1. Er gilt **nur** für die Betriebsart `stay`.
+**Ausleihe (`stay`, Rolle „Team“, Bergsonne hat keine Rezeption; Häuser mit Ausgabestelle legen die Rolle selbst fest):** der folgende Ablauf, Details in `abgleich-und-schnittstelle-2026-11-22.md` Abschnitt 6 Q1. Er gilt **nur** für die Betriebsart `stay`.
 
 ## 3a. Anforderungen an die Staff-Seite
 
 Ablauf siehe `abgleich-und-schnittstelle-2026-11-22.md`, Abschnitt 6, Q1. Anforderungen an die Staff-Seite (Bau durch Pulse, Anforderung gemeinsam mit Smartroom):
 
-1. Eigene Staff-Anmeldung, nie über einen Gästetoken. Rollen laut Smartroom-Spezifikation 7a: Ausgabe-Rolle des Teams (früher „Rezeption“; ausgeben, zurücknehmen, sperren, Gast-Token widerrufen), Technik (Geräteübersicht, Firmware, **kein** Token-Widerruf), Hausdame (nur Wünsche und Meldungen), Leitung. Eine gemeinsame Geräteseite für Raumtechnik und Lio-Geräte, nicht zwei.
+1. Eigene Staff-Anmeldung, nie über einen Gästetoken. Rollen laut Smartroom-Spezifikation 7a: Rolle „Team“ (früher Rezeption; ausgeben, zurücknehmen, sperren, Gast-Token widerrufen), Technik (Geräteübersicht, Firmware, **kein** Token-Widerruf), Hausdame (nur Wünsche und Meldungen), Leitung. Eine gemeinsame Geräteseite für Raumtechnik und Lio-Geräte, nicht zwei.
 2. **Ausgeben:** Aufenthalt aus der Liste der aktuellen Aufenthalte wählen (kein freies Eingabefeld für Zimmer oder Namen), Gerät per Sockel-Tag oder QR wählen, Koppelcode vom Gerät bestätigen.
 3. **Zurücknehmen:** Gerät scannen, „Zurück“, Token entzogen, Gedächtnis des Aufenthalts gelöscht.
 4. **Sperren:** „Gerät verloren“ sperrt sofort, Eintrag im Protokoll.
