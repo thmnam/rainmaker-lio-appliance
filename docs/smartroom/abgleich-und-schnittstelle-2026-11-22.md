@@ -20,11 +20,11 @@ Stand: 22.11.2026. Entwurf, nichts gekauft, nichts am Controller (`thmnam/bergso
 
 | Nr. | Konzept sagt | Appliance sagt | Folge |
 |---|---|---|---|
-| A1 | Stufe 3 und 10.2: „Spracherkennung im Gerät“, „ohne Umweg über Pi und Internet“, Phase 5 „Sprachbefehle lokal“ | Nur das Wake-Word läuft auf dem Gerät. Sprache zu Text, Modell und Antwort laufen im Hub (EU). Ohne Internet gibt es keine Sprachsteuerung. | Konzept anpassen: Voice ist **nicht** offlinefähig. Offline-Rückfall bleiben Wandschalter, Ventil am Heizkörper, Fernbedienung an der Rezeption (so schon Abschnitt 16.1). Ob ein kleiner lokaler Befehlssatz auf dem ESP32-S3 (deutsch) taugt, ist **ungeprüft**. |
+| A1 | Stufe 3 und 10.2: „Spracherkennung im Gerät“, „ohne Umweg über Pi und Internet“, Phase 5 „Sprachbefehle lokal“ | Nur das Wake-Word läuft auf dem Gerät. Sprache zu Text, Modell und Antwort laufen im Hub (EU). Ohne Internet gibt es keine Sprachsteuerung. | Konzept anpassen: Voice ist **nicht** offlinefähig. Offline-Rückfall bleiben Wandschalter, Ventil am Heizkörper, Fernbedienung an der Team (so schon Abschnitt 16.1). Ob ein kleiner lokaler Befehlssatz auf dem ESP32-S3 (deutsch) taugt, ist **ungeprüft**. |
 | A2 | 10.3 und 11.1: Beim Lio-Gerät ist das Zimmer „fest hinterlegt“ | Gerät ist mobil, Zimmerbindung entsteht bei Ausleihe und endet bei Rückgabe oder Abreise | Zimmerbindung des Geräts ist ein **Token mit Ablauf**, kein fester Eintrag (Abschnitt 3.3). |
 | A3 | 10.2: IR Controller als Baugruppe ins Gerät, Sichtlinie zum Fernseher | Gerät steht dort, wo der Gast es hinstellt, und kann in die Hand genommen werden. Ein eingebauter IR Controller zeigt dann irgendwohin, und das Bluetooth zum Ventil hängt am Standort. | **Empfehlung: IR Controller nicht ins Gerät einbauen.** Er bleibt fest im Zimmer (Sichtlinie zum Fernseher, Ventil in Reichweite). Das Gerät spricht über den Raum-Dienst mit ihm. Das löst Sichtlinie, Standort und CE zugleich (Abschnitt 4). |
 | A4 | 11.1: Namensprüfung gegen frontdesk für Gäste-Handys | Gerät braucht keine Namensprüfung, aber ein Token, das Personal bei Ausleihe ausgibt | Zwei Token-Arten, ein Prüfpfad (Abschnitt 3.3). |
-| A5 | 11.4 und 12.4: Late Check-out per Button bucht 25 Euro auf das Folio | Hub-Entscheidung R-2026-09-19-12: Ein Geräteereignis erzeugt **nie** eine Verpflichtung (Rechnungsposten) | Buchen darf nur die App-Schaltfläche mit ausdrücklicher Bestätigung des Gastes. Per Sprache am Gerät nimmt Lio den Wunsch nur an und gibt ihn an die Rezeption. Muss in die Regeln des Konzepts. |
+| A5 | 11.4 und 12.4: Late Check-out per Button bucht 25 Euro auf das Folio | Hub-Entscheidung R-2026-09-19-12: Ein Geräteereignis erzeugt **nie** eine Verpflichtung (Rechnungsposten) | Buchen darf nur die App-Schaltfläche mit ausdrücklicher Bestätigung des Gastes. Per Sprache am Gerät nimmt Lio den Wunsch nur an und gibt ihn an das Team. Muss in die Regeln des Konzepts. |
 | A6 | 12.5 Phase 0: „Appliance-Stand aus dem anderen Projekt“ | Hier geliefert (Abschnitt 1) | Phase 0 Punkt erledigt. |
 | A7 | 11.1: QR-Schild je Zimmer | B-27 testet gerade NFC oder QR im Zimmer als Stellvertreter für Nachfrage (Scans pro Aufenthalt) | Das QR-Schild **ist** der B-27-Test. Beide Projekte sollten dasselbe Ereignis (Scan, Aufenthalt, kein Name, keine Buchung) zählen, nicht zwei Zähler bauen. |
 
@@ -125,7 +125,7 @@ Die Phasen 1 bis 4 des Konzepts brauchen die Appliance **nicht**. Sie hängt ers
 5. **Rückgabe:** Personal scannt das Gerät am Sockel und wählt „Zurück“. Der Server entzieht das Token und löscht das Gedächtnis des Aufenthalts. Das Gerät setzt sich beim nächsten Kontakt zurück (Token, WLAN-Zuordnung des Aufenthalts, Gesprächsverlauf).
 6. **Automatischer Entzug:** Abreise, Stornierung, Zimmerwechsel (Rückfrage an den Gast, neue Bindung erst nach Bestätigung) oder „Gerät verloren“ durch Personal (sofortige Sperre).
 7. **Staff-Oberfläche:** im Cockpit (Gerätebestand, wer hat was, Ausgabe, Rückgabe, Sperre, Batterie- und Erreichbarkeitsstand). Kein Zimmer wird je am Gerät eingestellt.
-8. **Offen fürs Haus:** Wer vom Team gibt aus (das Haus hat keine Rezeption), braucht es eine Kaution oder einen Vermerk im Folio (Achtung R-2026-09-19-12: nur Hinweis, keine automatische Buchung durch das Gerät).
+8. **Offen fürs Haus:** Wer vom Team gibt aus (das Haus hat keine Team), braucht es eine Kaution oder einen Vermerk im Folio (Achtung R-2026-09-19-12: nur Hinweis, keine automatische Buchung durch das Gerät).
 
 ### Q2 Reicht der Raum-Katalog 1:1?
 
