@@ -1,6 +1,6 @@
 # Stand
 
-Letzte Änderung: 13.11.2026 (Variante D und Musikregel entschieden)
+Letzte Änderung: 22.11.2026 (Abgleich mit rainmaker.smartroom). Davor 13.11.2026: Variante D und Musikregel entschieden.
 
 ## Empfehlung
 
@@ -49,3 +49,7 @@ Möglicher Umweg über dokumentierte Bausteine (API-Aufruf startet Automation, K
 2. B-27 Nachfragetest im Hub starten (Karte `docs/program/cards/B-27-...` im Repo rainmaker-hub).
 3. Phase 1 Labor: Voice PE und Waveshare ESP32-S3-AUDIO an einen Prototyp-Gateway, Weg B gegen Weg A hören.
 4. Additive Route im Lio-Router: Gästeaufenthalt aus Zimmer und Aufenthalt statt Rufnummer.
+
+## Abgleich mit rainmaker.smartroom (22.11.2026)
+
+Bestandsaufnahme (nur Papier, keine Hardware, keine Firmware, keine Termine), Abweichungen zum Konzept Zimmersteuerung und Entwurf der Schnittstelle zum Raum-Dienst: [docs/smartroom/abgleich-und-schnittstelle-2026-11-22.md](docs/smartroom/abgleich-und-schnittstelle-2026-11-22.md). Empfehlung dort: IR Controller nicht ins Gerät einbauen, CE und Funk als eigenen Punkt vor dem Pilot klären.
