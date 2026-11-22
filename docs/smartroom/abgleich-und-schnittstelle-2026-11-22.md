@@ -148,3 +148,10 @@ Wissen, Anfragen und Rückruf laufen weiter über die Lio-Router-Werkzeuge, nich
 | nie enthalten | Name, Rufnummer, IP, Gerätekennung des Handys, Audio |
 
 Ein Zähler, ein Schema, abgelegt über den in B-27 vorgesehenen Weg (hub-atlas, dann hub-iot; das Binding von hub-atlas fehlt noch und gehört zu B-27). Kennzahlen: Anteil der Aufenthalte mit mindestens einem `token_issued` und Anteil mit mindestens einer Anfrage an Lio. Rotprobe: Ein Scan mit Buchungsabsicht darf nie einen Rechnungsposten erzeugen, der Test muss rot werden, wenn die Sperre entfällt. Schwellen für den Erfolg legt Thomas fest.
+
+## 7. Nachtrag 22.11. 20:34: Entscheidungen von Thomas
+
+- **Gerät fest im Smartroom, mobil ohne Smartroom.** Zwei Betriebsarten. *Fest:* Zimmer ist bei der Installation hinterlegt (Personal, Cockpit), das Gerät ist nur im Gastzugangsfenster für Gastwünsche aktiv, kein Ausleihvorgang; Geräte-Token hängt am Zimmer plus Gerät. *Mobil:* Ausleihe nach Abschnitt 6 Q1. Beide nutzen denselben Prüfpfad und denselben Katalog. Der Smartroom-Thread ergänzt die Spezifikation (Abschnitte 3.4a und 8 gehen bisher von mobil aus).
+- **IR Controller bei festem Gerät:** Sichtlinie lässt sich bei der Installation festlegen, mein Einwand A3 gilt dort schwächer. Empfehlung bleibt, ihn getrennt zu lassen, solange CE nicht geklärt ist (Thomas will keine externe Klärung). Ein Einbau wird nur auf sein Wort geplant.
+- **Weg B:** eigener Hub-Agent mit demselben Funktionsumfang wie Vendasta-Lio (Capabilities, Tools, Wissensbasis). Das ist der größte Aufwandsposten und wird im Gesprächskern-Entwurf (G6) beziffert.
+- **CE:** keine externe Klärung jetzt. Bleibt als bekanntes Risiko vor jedem Gästepilot im Gerät stehen.

@@ -53,3 +53,13 @@ Möglicher Umweg über dokumentierte Bausteine (API-Aufruf startet Automation, K
 ## Abgleich mit rainmaker.smartroom (22.11.2026)
 
 Bestandsaufnahme (nur Papier, keine Hardware, keine Firmware, keine Termine), Abweichungen zum Konzept Zimmersteuerung und Entwurf der Schnittstelle zum Raum-Dienst: [docs/smartroom/abgleich-und-schnittstelle-2026-11-22.md](docs/smartroom/abgleich-und-schnittstelle-2026-11-22.md). Empfehlung dort: IR Controller nicht ins Gerät einbauen, CE und Funk als eigenen Punkt vor dem Pilot klären.
+
+## Entscheidungen Thomas vom 22.11.2026 (20:34)
+
+- **Betriebsarten:** Im Smartroom ist das Gerät **fest** im Zimmer, ohne Smartroom **mobil** (ausleihbar). Das Gerät muss beides können (Zimmerbindung fest oder per Token bei Ausleihe).
+- **Lio-Weg:** Eigener Sprachagent im Hub (Weg B) mit denselben Capabilities, Tools und derselben Wissensbasis wie heute bei Vendasta. Vendasta bietet vor Q2 2027 keine API oder Anbindung. Der Telefonweg ist keine Option mehr.
+- **loratech:** raus, kein Gespräch.
+- **Threads:** rainmaker.appliance und rainmaker.smartroom arbeiten verbunden (gemeinsame Liste `smartroom/gemeinsame-aufgabenliste-smartroom-appliance.md`), Scan-Ereignis von QR-Schild und B-27 ist eines.
+- **CE und Funk:** keine externe Klärung jetzt (Thomas: Nein). Offenes Risiko, keine Aktion.
+- **IR Controller:** Anfrage (Maße, IR-Winkel, lokale Befehle) läuft, Antwort steht aus.
+- Weiter offen: Pilot Bergsonne mit Zimmerzahl, B-27 zuerst, Kaufwort für Laborgeräte.
