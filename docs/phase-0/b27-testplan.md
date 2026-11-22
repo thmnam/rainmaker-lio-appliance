@@ -1,6 +1,6 @@
 # Phase 0: Nachfragetest B-27, Entwurf des Testplans
 
-Status: Entwurf vom 14.11.2026. Alle Werte sind Vorschläge und von Thomas zu bestätigen. Grundlage: Hub-Karte B-27 und Entscheidung R-2026-09-19-12 im Repo rainmaker-hub.
+Status: Entwurf vom 14.11.2026, am 22.11.2026 mit dem QR-Schild von rainmaker.smartroom zusammengeführt (siehe Abschnitt „Scan-Ereignis“). Alle Werte sind Vorschläge und von Thomas zu bestätigen. Grundlage: Hub-Karte B-27 und Entscheidung R-2026-09-19-12 im Repo rainmaker-hub.
 
 Frage des Tests: Nutzen Gäste einen NFC-Tag oder QR-Code im Zimmer, um Lio und Hotelleistungen zu erreichen? Das ist ein Stellvertreter für die Nachfrage nach einem Sprachgerät. Es kommt keine neue Hardware ins Zimmer.
 
@@ -30,3 +30,9 @@ Ein Geräteereignis erzeugt nie eine Verpflichtung. Die Rotprobe ist ein Test, d
 ## Ergänzende Messung
 
 Zusätzlich auswerten, wie oft Gäste Lio heute schon per Telefon und Chat nutzen. Das zeigt, wie groß die Grundnachfrage nach Lio im Zimmer ist.
+
+## Scan-Ereignis (22.11.2026, gemeinsam mit rainmaker.smartroom)
+
+Das QR-Schild im Zimmer (Smartroom, Konzept 11.1) und der NFC/QR-Test dieser Karte sind **dasselbe** Ereignis, es gibt nur einen Zähler. Felder, Datenschutz und Kennzahlen: `docs/smartroom/abgleich-und-schnittstelle-2026-11-22.md`, Abschnitt 6 (Q5). Kurz: `event=room_scan`, Zimmer, Aufenthalt erst nach erfolgreicher Prüfung, Zeit, Quelle `qr` oder `nfc`, Ergebnis `opened`, `token_issued` oder `check_failed`. Nie enthalten: Name, Rufnummer, IP, Handy-Kennung, Audio. Ein Scan löst nie eine Buchung aus (Rotprobe wie oben).
+
+Folge für Punkt 4 der Tabelle „Zu entscheiden“: Ein Scan darf jetzt zusätzlich den Zimmertoken-Ablauf des Smartrooms starten (einmalige Namensprüfung). Das ist erlaubt, weil der Token nur Zimmersteuerung freigibt und nie eine Buchung. Thomas bestätigt das, ebenso Schwellen und Dauer.
