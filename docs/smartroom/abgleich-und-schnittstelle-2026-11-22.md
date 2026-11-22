@@ -113,3 +113,38 @@ Offen für Thomas (vor Phase 3): Gilt R-2026-09-19-12 so, dass der App-Button mi
 | QR-Schild und B-27-Ereignis | Hub (hub-atlas, hub-iot) | gemeinsam, ein Zähler |
 
 Die Phasen 1 bis 4 des Konzepts brauchen die Appliance **nicht**. Sie hängt erst an Phase 5. Darum bleibt die Appliance ein eigenes Projekt mit eigener Freigabe, nutzt aber ab Phase 2 den Raum-Dienst des Konzepts. Ein einziger gemeinsamer Thread würde die Appliance an den Pilot im Zimmer 13 koppeln, den sie nicht braucht.
+
+## 6. Antworten an rainmaker.smartroom (Q1, Q2, Q5), Entwurf
+
+### Q1 Ausleihe, Rückgabe und Entzug des Geräte-Tokens (Ablauf als Text)
+
+1. **Voraussetzung:** Der Aufenthalt hat Status `Guaranteed` (ab Anreisetag 14:00) oder `InHouse`. Das Gerät wird nur auf Wunsch des Gastes ausgegeben, nie automatisch.
+2. **Ausgabe am Empfang:** Personal meldet sich im Cockpit an (Staff-Anmeldung, nicht über den Gästetoken) und öffnet „Gerät ausgeben“. Es wählt den Aufenthalt aus der Liste der aktuellen Aufenthalte (aus frontdesk über Forge, keine freie Eingabe von Zimmer oder Namen) und das Gerät (NFC-Tag im Sockel oder QR am Sockel liefert die Geräte-ID).
+3. **Kopplung:** Das frisch eingeschaltete Gerät fragt beim Gateway einen einmaligen Koppelcode an (sechs Stellen, fünf Minuten gültig). Personal bestätigt ihn im Cockpit. Erst dann stellt der Server das Geräte-Token aus (`kind: appliance`, `biz`, `room`, `stay`, `deviceId`, `exp`) und übergibt es dem Gerät über die gesicherte Verbindung. Das Token steht nie auf Papier, nie in einem QR und nie im Gesprächskontext des Modells. LED „gebunden“.
+4. **Laufzeit:** Ablauf spätestens am Abreisetag plus Karenz wie beim Gast-Token. Zusätzlich kurze Erneuerung (zum Beispiel 24 Stunden), damit ein Entzug auch bei einem Gerät greift, das zwischendurch offline war. Unabhängig davon prüft der Raum-Dienst bei jedem steuernden Aufruf den Aufenthaltsstatus (Zwischenspeicher höchstens 5 Minuten).
+5. **Rückgabe:** Personal scannt das Gerät am Sockel und wählt „Zurück“. Der Server entzieht das Token und löscht das Gedächtnis des Aufenthalts. Das Gerät setzt sich beim nächsten Kontakt zurück (Token, WLAN-Zuordnung des Aufenthalts, Gesprächsverlauf).
+6. **Automatischer Entzug:** Abreise, Stornierung, Zimmerwechsel (Rückfrage an den Gast, neue Bindung erst nach Bestätigung) oder „Gerät verloren“ durch Personal (sofortige Sperre).
+7. **Staff-Oberfläche:** im Cockpit (Gerätebestand, wer hat was, Ausgabe, Rückgabe, Sperre, Batterie- und Erreichbarkeitsstand). Kein Zimmer wird je am Gerät eingestellt.
+8. **Offen fürs Haus:** Wer gibt am Empfang aus, braucht es eine Kaution oder einen Vermerk im Folio (Achtung R-2026-09-19-12: nur Hinweis, keine automatische Buchung durch das Gerät).
+
+### Q2 Reicht der Raum-Katalog 1:1?
+
+Für Heizung, Fernseher, Licht und Szenen: **ja, 1:1**, ohne Sonderfall am Gerät. Das Gerät braucht darüber hinaus drei Dinge, die nicht in den Raum-Katalog gehören:
+- **Musik** (`media.play`, `media.stop`, `media.volume`, nur Bergsonne-Playlists vom Controller): eigener, kleiner Katalog `media`, **gleicher** Token und Prüfpfad. Die Zustellung der Playlists ist offen (Phase 1), und es ist keine Zimmersteuerung im Sinn des Konzepts.
+- **Weckruf** (`wake.set`, `wake.cancel`): gehört in den **Raum-Katalog** (SR), weil der Controller zur Weckzeit Licht, Heizung und Ton auslöst (Konzept 16.5). Das Gerät ruft ihn nur auf.
+- **Gerätelokales** (Lautstärke des Geräts, Stumm, LED, Hilfetaste): bleibt im Gerät. Die Hilfetaste ohne KI meldet über den Gateway an die Rezeption, ist keine Raum-Aktion.
+Wissen, Anfragen und Rückruf laufen weiter über die Lio-Router-Werkzeuge, nicht über den Raum-Dienst.
+
+### Q5 Scan-Ereignis B-27 und QR-Schild als ein Ereignis
+
+| Feld | Inhalt |
+|---|---|
+| `event` | `room_scan` |
+| `businessId`, `room` | aus dem Code auf dem Schild oder aus dem NFC-Tag |
+| `stayId` | erst nach erfolgreicher Prüfung, sonst `null` (kein Rückschluss auf Personen bei Fehlversuch) |
+| `ts` | Zeitpunkt |
+| `source` | `qr` oder `nfc` |
+| `outcome` | `opened`, `token_issued`, `check_failed` (ohne Angabe, welcher Teil falsch war) |
+| nie enthalten | Name, Rufnummer, IP, Gerätekennung des Handys, Audio |
+
+Ein Zähler, ein Schema, abgelegt über den in B-27 vorgesehenen Weg (hub-atlas, dann hub-iot; das Binding von hub-atlas fehlt noch und gehört zu B-27). Kennzahlen: Anteil der Aufenthalte mit mindestens einem `token_issued` und Anteil mit mindestens einer Anfrage an Lio. Rotprobe: Ein Scan mit Buchungsabsicht darf nie einen Rechnungsposten erzeugen, der Test muss rot werden, wenn die Sperre entfällt. Schwellen für den Erfolg legt Thomas fest.
