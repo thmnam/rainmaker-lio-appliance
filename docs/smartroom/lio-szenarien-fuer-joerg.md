@@ -9,7 +9,7 @@ Im Zimmer steht ein Lio-Gerät aus Holz. Der Gast spricht es an, es antwortet in
 1. **„Was gibt es zum Frühstück?“** Lio nennt Zeiten und Angebot des Hauses, auf Wunsch auch das Wetter, einen Weg zur Gondel, einen Ausflug oder ein Restaurant in der Nähe. Alles aus dem, was das Haus über sich weiß, nie erfunden. Weiß Lio etwas nicht, sagt es das und bietet an, die Frage an das Team zu geben.
 2. **Sauna.** „Ist die Sauna warm?“ Lio sagt, ob sie an ist oder geplant. Möchte der Gast hin, schlägt Lio die nächste volle halbe Stunde vor und trägt die Zeit nach einem klaren Ja ein. Umbuchen und absagen geht genauso. Auf Wunsch schickt Lio eine Nachricht, wenn die Sauna warm ist. Bei eingeschränkter Beweglichkeit bucht Lio nicht von sich aus, sondern gibt das Anliegen freundlich an das Team.
 3. **Maxibar.** „Ich nehme zwei Cola.“ Lio fragt kurz, wer spricht (Zimmer und Nachname), wiederholt Posten und Menge, bucht nach dem ausdrücklichen Ja auf den Deckel und nennt den neuen Stand. Bezahlt wird bei der Abreise. „Was steht auf meinem Deckel?“ beantwortet Lio auf Zuruf. Kartendaten nimmt Lio nie am Gerät, dafür schickt es einen Link auf das Handy.
-4. **Wecker.** „Weck mich um sieben.“ Lio bestätigt die Zeit und weckt zur Zeit mit Ansage und, wenn das Haus es vorsieht, sanftem Licht. Fällt etwas aus, bleibt der Weckruf an der Rezeption als Rückfall.
+4. **Wecker.** „Weck mich um sieben.“ Lio bestätigt die Zeit und weckt zur Zeit mit Ansage und, wenn das Haus es vorsieht, sanftem Licht. Fällt etwas aus, gibt es keinen Weckruf per Telefon, der Gast stellt sich bei Bedarf zusätzlich einen Wecker am Handy. (Das Haus hat keine Rezeption, der Rückfall ist das Team, das nicht rund um die Uhr da ist.)
 5. **Musik.** „Mach Musik an.“ Es läuft die Auswahl des Hauses, abgestimmt auf Tageszeit und Bereich, keine Streamingdienste und keine Wünsche einzelner Titel. Leiser, lauter und stumm geht jederzeit.
 6. **Wünsche ans Team.** „Wir brauchen noch Handtücher.“ Lio nimmt den Wunsch an und gibt ihn an das Team, es verspricht nie, dass es selbst etwas bringt. Der Gast hört, wann das Haus sich meldet.
 7. **Etwas ist kaputt oder stört.** Lio nimmt die Meldung mit Zimmer und Zeit auf und gibt sie an das Haus weiter.
@@ -22,7 +22,7 @@ Im Zimmer steht ein Lio-Gerät aus Holz. Der Gast spricht es an, es antwortet in
 - **Dasselbe Wissen wie heute:** Lio im Zimmer spricht mit derselben Stimme und denselben Hausfakten wie der Lio am Telefon und im Chat. Pflegt das Haus eine Auskunft, gilt sie überall.
 - **Kein Risiko für die Rechnung:** Lio bucht nur, was der Gast ausdrücklich bestätigt. Sensoren oder das Gerät selbst buchen nie etwas.
 - **Gast-Datenschutz:** kein Mithören vor dem Ansprechen, Stummschalter, kein Audio gespeichert, Gesprächsverlauf nur bis zur Abreise.
-- **Rückfall:** Fällt das Internet aus, steuert das Gerät nichts und sagt das deutlich (Leuchte und Ansage). Wandschalter, Heizkörperventil, Fernbedienung an der Rezeption und der Weckruf an der Rezeption bleiben der Rückfall.
+- **Rückfall:** Fällt das Internet aus, steuert das Gerät nichts und sagt das deutlich (Leuchte und Ansage). Wandschalter und Heizkörperventil bleiben der Rückfall, bei allem anderen hilft das Team.
 
 ## Was noch nicht feststeht
 - Wie das Gerät genau aussieht, welches Holz, wie groß: noch Entwurf, es gibt noch kein Muster.

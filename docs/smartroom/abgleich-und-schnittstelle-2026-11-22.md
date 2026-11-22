@@ -64,7 +64,7 @@ Der Raum-Dienst nimmt **nie** ein Zimmer als freien Parameter von Lio, App oder 
 | Ausgabe | nach QR-Scan und einmaliger Namensprüfung (Server gegen frontdesk über Forge) | Personal bei Ausleihe per NFC oder QR, keine Namensprüfung |
 | Inhalt | `biz`, `room`, `stay`, `exp`, Geräte-ID des Handys | `biz`, `room`, `stay`, `exp`, Geräte-ID (Seriennummer) |
 | Ablauf | Abreise plus Karenz | Rückgabe oder Abreise, je nachdem was zuerst kommt |
-| Entzug | Zimmerwechsel (neue Bindung nach Rückfrage), Abreise, Sperre durch Rezeption | zusätzlich bei Rückgabe: Gerät setzt Gedächtnis zurück |
+| Entzug | Zimmerwechsel (neue Bindung nach Rückfrage), Abreise, Sperre durch das Team | zusätzlich bei Rückgabe: Gerät setzt Gedächtnis zurück |
 | Speicherung | Zimmer, Geräte-ID, Ablauf, kein Name | dasselbe |
 
 Prüfpfad: Gateway-Worker prüft Signatur und Ablauf, fragt bei jedem steuernden Aufruf den frontdesk-Status des Aufenthalts (gecacht, kurze Frist), ruft den Raum-Dienst per Service Binding. Lesen aus frontdesk läuft über Forge (`hub-frontdesk`), nicht direkt. Alle Aufrufe an Vendasta, frontdesk und Google ausschließlich über Forge.
@@ -119,20 +119,20 @@ Die Phasen 1 bis 4 des Konzepts brauchen die Appliance **nicht**. Sie hängt ers
 ### Q1 Ausleihe, Rückgabe und Entzug des Geräte-Tokens (Ablauf als Text)
 
 1. **Voraussetzung:** Es gilt dasselbe Gastzugangsfenster wie für den Gast-Token (Check-in-Zeit oder Status `InHouse`, Smartroom-Spezifikation 3.1). Das Gerät wird nur auf Wunsch des Gastes ausgegeben, nie automatisch.
-2. **Ausgabe am Empfang:** Personal meldet sich im Cockpit an (Staff-Anmeldung, nicht über den Gästetoken) und öffnet „Gerät ausgeben“. Es wählt den Aufenthalt aus der Liste der aktuellen Aufenthalte (aus frontdesk über Forge, die Liste zeigt Zimmer und Aufenthalt, keine Gästenamen, keine freie Eingabe) und das Gerät (NFC-Tag im Sockel oder QR am Sockel liefert die Geräte-ID).
+2. **Ausgabe durch das Team:** Personal meldet sich im Cockpit an (Staff-Anmeldung, nicht über den Gästetoken) und öffnet „Gerät ausgeben“. Es wählt den Aufenthalt aus der Liste der aktuellen Aufenthalte (aus frontdesk über Forge, die Liste zeigt Zimmer und Aufenthalt, keine Gästenamen, keine freie Eingabe) und das Gerät (NFC-Tag im Sockel oder QR am Sockel liefert die Geräte-ID).
 3. **Kopplung:** Das frisch eingeschaltete Gerät fragt beim Gateway einen einmaligen Koppelcode an (sechs Stellen, fünf Minuten gültig). Personal bestätigt ihn im Cockpit. Erst dann stellt der Server das Geräte-Token aus (`kind: appliance`, `biz`, `room`, `stay`, `deviceId`, `exp`) und übergibt es dem Gerät über die gesicherte Verbindung. Das Token steht nie auf Papier, nie in einem QR und nie im Gesprächskontext des Modells. LED „gebunden“.
 4. **Laufzeit:** Ablauf spätestens am Abreisetag plus Karenz wie beim Gast-Token. Zusätzlich kurze Erneuerung (zum Beispiel 24 Stunden), damit ein Entzug auch bei einem Gerät greift, das zwischendurch offline war. Unabhängig davon prüft der Raum-Dienst bei jedem steuernden Aufruf den Aufenthaltsstatus (Zwischenspeicher höchstens 5 Minuten).
 5. **Rückgabe:** Personal scannt das Gerät am Sockel und wählt „Zurück“. Der Server entzieht das Token und löscht das Gedächtnis des Aufenthalts. Das Gerät setzt sich beim nächsten Kontakt zurück (Token, WLAN-Zuordnung des Aufenthalts, Gesprächsverlauf).
 6. **Automatischer Entzug:** Abreise, Stornierung, Zimmerwechsel (Rückfrage an den Gast, neue Bindung erst nach Bestätigung) oder „Gerät verloren“ durch Personal (sofortige Sperre).
 7. **Staff-Oberfläche:** im Cockpit (Gerätebestand, wer hat was, Ausgabe, Rückgabe, Sperre, Batterie- und Erreichbarkeitsstand). Kein Zimmer wird je am Gerät eingestellt.
-8. **Offen fürs Haus:** Wer gibt am Empfang aus, braucht es eine Kaution oder einen Vermerk im Folio (Achtung R-2026-09-19-12: nur Hinweis, keine automatische Buchung durch das Gerät).
+8. **Offen fürs Haus:** Wer vom Team gibt aus (das Haus hat keine Rezeption), braucht es eine Kaution oder einen Vermerk im Folio (Achtung R-2026-09-19-12: nur Hinweis, keine automatische Buchung durch das Gerät).
 
 ### Q2 Reicht der Raum-Katalog 1:1?
 
 Für Heizung, Fernseher, Licht und Szenen: **ja, 1:1**, ohne Sonderfall am Gerät. Das Gerät braucht darüber hinaus drei Dinge, die nicht in den Raum-Katalog gehören:
 - **Musik** (`media.play`, `media.stop`, `media.volume`, nur Bergsonne-Playlists vom Controller): eigener, kleiner Katalog `media`, **gleicher** Token und Prüfpfad. Die Zustellung der Playlists ist offen (Phase 1), und es ist keine Zimmersteuerung im Sinn des Konzepts.
 - **Weckruf** (`wake.set`, `wake.cancel`): gehört in den **Raum-Katalog** (SR), weil der Controller zur Weckzeit Licht, Heizung und Ton auslöst (Konzept 16.5). Das Gerät ruft ihn nur auf.
-- **Gerätelokales** (Lautstärke des Geräts, Stumm, LED, Hilfetaste): bleibt im Gerät. Die Hilfetaste ohne KI meldet über den Gateway an die Rezeption, ist keine Raum-Aktion.
+- **Gerätelokales** (Lautstärke des Geräts, Stumm, LED, Hilfetaste): bleibt im Gerät. Die Hilfetaste ohne KI meldet über den Gateway an das Team, ist keine Raum-Aktion.
 Wissen, Anfragen und Rückruf laufen weiter über die Lio-Router-Werkzeuge, nicht über den Raum-Dienst.
 
 ### Q5 Scan-Ereignis B-27 und QR-Schild als ein Ereignis
