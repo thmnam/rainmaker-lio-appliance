@@ -15,7 +15,9 @@ Im Zimmer steht ein Lio-Gerät aus Holz. Der Gast spricht es an, es antwortet in
 7. **Etwas ist kaputt oder stört.** Lio nimmt die Meldung mit Zimmer und Zeit auf und gibt sie an das Haus weiter.
 8. **Hilfe und Notfall.** Bei einer Notlage sagt Lio zuerst, was zu tun ist (Notruf wählen), und informiert das Team, ohne Gesundheitsdetails weiterzugeben. Die Hilfetaste am Gerät ruft das Team ohne Gespräch mit Lio.
 9. **Zimmer steuern** (Heizung, Fernseher, Licht, Szenen wie „Gute Nacht“): beschrieben im Smartroom-Teil dieses Papiers. Der Gast kann es per Stimme am Gerät oder auf dem Handy tun, es ist dieselbe Bedienung.
-10. **Auf dem Handy.** Lio ist auch in der Lio-App erreichbar, mit demselben Wissen. Wer lieber tippt, tippt.
+10. **Rechnung.** „Wie hoch ist meine Rechnung?“ Lio nennt den aktuellen Stand und die Zahl der Posten. Einzelposten liest es nur auf Nachfrage vor, höchstens drei auf einmal. Auf Wunsch schickt Lio die Übersicht auf das Handy, damit niemand im Zimmer mithören muss. Kartendaten oder Kontodaten nennt Lio nie.
+11. **Späterer Check-out.** „Kann ich morgen länger bleiben?“ Lio prüft, ob das Zimmer am Abreisetag neu belegt ist. Wenn nicht, nennt es Zeit und Preis, wiederholt den Wunsch und bucht nach dem ausdrücklichen „Ja, buchen“. Ist das Zimmer neu belegt, lehnt Lio höflich ab und bietet an, das Team zu fragen.
+12. **Auf dem Handy.** Lio ist auch in der Lio-App erreichbar, mit demselben Wissen. Wer lieber tippt, tippt.
 
 ## Szenarien aus Sicht des Hotels
 - **Das Team wird entlastet:** Fragen zu Frühstück, Weg, Sauna und Maxibar beantwortet Lio sofort, auch nachts. Wünsche und Meldungen kommen sortiert beim Team an, mit Zimmer und Zeit.
@@ -28,4 +30,4 @@ Im Zimmer steht ein Lio-Gerät aus Holz. Der Gast spricht es an, es antwortet in
 - Wie das Gerät genau aussieht, welches Holz, wie groß: noch Entwurf, es gibt noch kein Muster.
 - Das Wort, mit dem der Gast Lio anspricht.
 - Wie lange das Gerät in Zimmer 13 getestet wird und wann: abhängig von Freigaben von Thomas.
-- Ob Rechnung einsehen und Late Check-out am Gerät kommen: heute kann das auch der Telefon-Lio nicht, beides bleibt zunächst in der App oder beim Team.
+- Rechnung einsehen und späterer Check-out per Sprache sind **neu** gegenüber dem Telefon-Lio und müssen erst gebaut und im Haus geprüft werden. Entscheidung Thomas 22.11.: soll am Gerät gehen, jeweils nach Preis und ausdrücklichem Ja.

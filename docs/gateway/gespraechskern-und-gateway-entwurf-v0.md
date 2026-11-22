@@ -53,6 +53,23 @@ Vorschlag Stufen am Gerät:
 
 Das ist **strenger Gleichstand mit dem Telefon**, nicht lockerer. Es weicht von der Regel in Smartroom-Spezifikation Abschnitt 8, 4a ab (dort ist alles mit Geldfolge „nur Wunsch ans Team“). **Entschieden von Thomas am 22.11. (19:48): Ja, das Gerät darf alles, was Lio kann**, also auch Sauna und Maxibar buchen (Prüfung wie am Telefon, Betragsgrenze wie vorgeschlagen, Höhe legt das Haus fest). Die Regel „nur Wunsch ans Team“ ist für das Gerät aufgehoben, Smartroom-Spezifikation 4a wird angepasst. „Alles, was Lio kann“ heißt: der heutige Funktionsumfang des Telefon-Lio. Was Lio heute nicht kann (Rechnung einsehen, Late Check-out) bleibt Stufe 3 (nur Wunsch ans Team) beziehungsweise App-Schaltfläche, bis Thomas es einzeln freigibt. **Vorschlag Gültigkeit der Personenprüfung:** Am Telefon gilt sie für das ganze Gespräch. Am Gerät, das im Zimmer für alle hörbar ist, gilt sie **nur für den einen Auftrag**, dann fragt Lio neu (Smartroom-Anregung, strenger als das Telefon). **Betragsgrenze:** Thomas 22.11. 19:49: **für den Piloten keine Betragsgrenze am Gerät.** Das Feld bleibt als Hauskonfiguration (`room-config`, SRM-0007) vorgesehen, im Piloten leer. Die Wiederholung des Postens mit Preis und das ausdrückliche Ja bleiben Pflicht. Die Auslegung von R-2026-09-19-12 muss im Hub schriftlich festgehalten werden (Auftrag an Pulse, G17). Die Hub-Entscheidung R-2026-09-19-12 ist so gelesen: kein Auto-Posting durch Geräteereignisse, bestätigte Gästebestellung erlaubt (Abgleich mit Smartroom läuft).
 
+### 2b. Rechnung einsehen und Late Check-out per Sprache (Entscheidung Thomas 22.11. 20:04: „soll alles gehen“)
+
+Das ist **mehr als der Telefon-Lio heute kann** (Parität ist damit überschritten). Folgen für den Gesprächskern:
+
+| Punkt | Vorschlag |
+|---|---|
+| Neue Fähigkeiten | `Folio_Read` (Rechnungsstand und Posten lesen) und `LateCheckout` (Prüfen, Preis nennen, buchen). Beide als **additive** Lio-Router-Routen (Aufenthalt aus dem Gerätetoken), die über `hub-frontdesk`/Forge gehen, nicht über neue Direktaufrufe. Beide Fähigkeiten gehören zugleich in die Lio-Capabilities der App und, falls gewünscht, des Telefons (Lio-Thread entscheidet) |
+| Schreibsperre | Buchen geht für Bergsonne erst, wenn Thomas die Schreibsperre im Hub aufhebt (Entscheidung FDA-0017). Vorher läuft alles im Test-Hotel `91d884c46d` (SRM-0006). Der Lesezugriff auf das Folio ist davon nicht betroffen |
+| Prüfstufe | Person geprüft, **nur für diesen Auftrag**. Late Check-out wiederholt Zeit und Preis und verlangt „Ja, buchen“ |
+| Mithörschutz | Der Raum hört mit. Rechnung: zuerst nur Summe und Zahl der Posten (wie beim Maxibar-Deckel heute), Einzelposten nur auf Nachfrage und höchstens drei je Zug, Angebot „auf das Handy schicken“. Nie Zahlungsdaten, nie Namen Dritter, nie die Zimmernummer. Details der Posten nicht ins Protokoll |
+| Fehlbestätigung | Ein „Ja“ kann aus dem Fernseher, einer Unterhaltung oder einer Musikpause kommen. Bestätigung gilt nur direkt nach Lios Rückfrage (kurzes Fenster, Vorschlag zehn Sekunden), verlangt bei Geldfolgen das Wort „buchen“ und nicht nur „ja“, und läuft bei Fernsehton im Hintergrund nicht über die Lautstärkeregelung des Fernsehers, sondern Lio wartet auf eine klare Antwort. Eine unklare Antwort heißt „nicht gebucht“ |
+| Idempotenz | Eine Buchung hat eine feste Kennung aus Aufenthalt, Leistung und Datum, ein zweites „Ja“ bucht nicht zweimal. Vor dem Buchen liest der Dienst das Folio und prüft, ob die Leistung schon gebucht ist |
+| Hausleistung | Preis, Uhrzeit und Folgebelegung kommen aus frontdesk, nie vom Modell. Das Modell nennt nur, was das Werkzeug zurückgibt |
+| Abnahme | Rotproben: Fremdes „Ja“ aus dem Fernseher bucht nicht, Doppel-„Ja“ bucht einmal, Folgebelegung lehnt ab, Aufruf ohne Personenprüfung lehnt ab, Rechnungsdetails stehen nicht im Betriebsprotokoll |
+
+Offen für Thomas später: ab wann die Schreibsperre für Bergsonne fällt, und ob die Fähigkeit auch am Telefon-Lio ergänzt wird (sonst weichen Gerät und Telefon ab).
+
 ## 3. Wissensquellen ohne zweiten Pflegeweg
 
 Der Lio-Thread hat die Hoheit über die Wissensbasis, Einspielen läuft über den Router (Admin-Schlüssel nur bei Thomas). Vorschlag:
