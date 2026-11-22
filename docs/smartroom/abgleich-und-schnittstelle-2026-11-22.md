@@ -78,6 +78,18 @@ Offen: Wie kommt der Zimmertoken in einen Aufruf von Vendasta-Lio (Gespräch, St
 3. Kein Audio vor dem Wake-Word, keine Gästenamen im Raum-Dienst, Protokoll ohne Gesprächsinhalt.
 4. Kein neues Geheimnis auf dem Pi oder im Repo, Schlüssel nur über `rmsec`.
 
+### 3.5 Abgestimmt mit rainmaker.smartroom (Spezifikation v1.1, 22.11.)
+
+Die Spezifikation `/mnt/project-files/smartroom/smartroom-spezifikation-schnittstelle-phasen-v1-2026-11-22.md` führt diesen Entwurf fort und gilt bei Abweichungen. Änderungen gegenüber Abschnitt 3:
+1. Das Zimmer steht auch **nicht im Pfad**: `POST /room/act`, `GET /room/state`. Ein Zimmer nennen nur Planjob und Staff. Die heutige Route von `hub-smartcontrol` (`room/{room}/action`) taugt für Gast und Gerät so nicht.
+2. Der rohe `POST …/proxy` in `hub-smartcontrol` ist nur für Staff. Gast, App und Gerät erreichen ihn nie. `hub-smartcontrol` hängt heute hinter `hub-cockpit-api` (Sitzung), ein Gastzugang braucht eine eigene öffentliche Tür davor, mit Pflicht-Turnstile an der Token-Tür.
+3. Statusprüfung gegen frontdesk bei jedem steuernden Aufruf, Zwischenspeicher höchstens 5 Minuten (statt „kurze Frist“).
+4. `PUT /room/{room}/plan` gehört weder zum Gast- noch zum Gerätekatalog.
+5. Gateway-Worker ruft den Raum-Dienst mit dem Geräte-Token. Das Modell sieht ihn nie. **Ohne Verbindung zum Hub steuert das Gerät nichts.**
+6. Zusätzliche Fehlercodes: `WINDOW_OPEN`, `TOKEN_EXPIRED`, `NOT_ALLOWED_FOR_GUEST`.
+
+Offen für Thomas (vor Phase 3): Gilt R-2026-09-19-12 so, dass der App-Button mit Bestätigung buchen darf und das Gerät nie?
+
 ## 4. Platz für den Shelly IR Controller und CE
 
 **Platz und Sichtlinie.** Maße, IR-Sendewinkel und Leistung des IR Controllers (S4CC-0D1XX1WW1) sind uns **nicht belegt** (nur das Handbuchfoto: USB-C 5 V 1 A, Reichweite bis 5 m zum Empfänger). Ein Einbau bräuchte ein Infrarotfenster im Holzgehäuse, ein Gehäuse, das IR und Bluetooth durchlässt, eine 5-V-Schiene aus PoE oder PD und freie Sicht zum Fernseher. Weil das Gerät mobil ist, ist das nicht zu garantieren.
