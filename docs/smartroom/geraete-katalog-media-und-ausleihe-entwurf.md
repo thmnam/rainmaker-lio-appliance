@@ -27,7 +27,7 @@ Offen (Phase 1, nur lesen beim Controller): Liefert der Controller die Playlists
 
 Ablauf siehe `abgleich-und-schnittstelle-2026-11-22.md`, Abschnitt 6, Q1. Anforderungen an die Staff-Seite (Bau durch Pulse, Anforderung gemeinsam mit Smartroom):
 
-1. Eigene Staff-Anmeldung, nie über einen Gästetoken. Rolle „Rezeption“ darf ausgeben, zurücknehmen, sperren. Rolle „Technik“ zusätzlich Gerätebestand und Firmware ansehen.
+1. Eigene Staff-Anmeldung, nie über einen Gästetoken. Rollen laut Smartroom-Spezifikation 7a: Rezeption (ausgeben, zurücknehmen, sperren, Gast-Token widerrufen), Technik (Geräteübersicht, Firmware, **kein** Token-Widerruf), Hausdame (nur Wünsche und Meldungen), Leitung. Eine gemeinsame Geräteseite für Raumtechnik und Lio-Geräte, nicht zwei.
 2. **Ausgeben:** Aufenthalt aus der Liste der aktuellen Aufenthalte wählen (kein freies Eingabefeld für Zimmer oder Namen), Gerät per Sockel-Tag oder QR wählen, Koppelcode vom Gerät bestätigen.
 3. **Zurücknehmen:** Gerät scannen, „Zurück“, Token entzogen, Gedächtnis des Aufenthalts gelöscht.
 4. **Sperren:** „Gerät verloren“ sperrt sofort, Eintrag im Protokoll.
