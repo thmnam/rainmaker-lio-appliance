@@ -63,3 +63,7 @@ Bestandsaufnahme (nur Papier, keine Hardware, keine Firmware, keine Termine), Ab
 - **CE und Funk:** keine externe Klärung jetzt (Thomas: Nein). Offenes Risiko, keine Aktion.
 - **IR Controller:** Anfrage (Maße, IR-Winkel, lokale Befehle) läuft, Antwort steht aus.
 - Weiter offen: Pilot Bergsonne mit Zimmerzahl, B-27 zuerst, Kaufwort für Laborgeräte.
+
+## Entscheidung Thomas vom 28.11.2026 (Punkt 19)
+
+Rechnung einsehen und Late Check-out gehen am Zimmergerät per Sprache, aber **nicht** am öffentlichen Telefon-Lio (Datensicherheit, Datenschutz). Gerät und Telefon weichen hier gewollt ab. Festgehalten in `docs/gateway/gespraechskern-und-gateway-entwurf-v0.md` (Abschnitt 1 Ausnahme, 2b: Routen nur für Gerätetoken, Rotprobe Telefon-Aufruf abgelehnt) und in den Lio-Szenarien.

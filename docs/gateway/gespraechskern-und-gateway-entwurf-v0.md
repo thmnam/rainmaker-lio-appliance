@@ -16,6 +16,8 @@ Quelle im Repo `rainmaker-lio-router`, `lio-quellen/bergsonne/voice/` (Stand 23.
 
 Ehrlich: Die Tool-Definitionen der Voice-Capabilities (Endpunkte, Parameter, zum Beispiel `controlIKEA`, `Maxibar` mit `verify`) habe ich nur als Beschreibung in den Capability-Dateien gesehen, nicht die Tool-Konfiguration in der Vendasta-Oberfläche. Vor dem Bau müssen sie dort abgelesen werden (Lio-Thread).
 
+**Gewollte Ausnahme von der Parität (Thomas 28.11.2026):** Rechnung einsehen (`Folio_Read`) und späterer Check-out (`LateCheckout`) gibt es **nur am Zimmergerät**, nicht am öffentlichen Telefon-Lio (Datensicherheit und Datenschutz). Siehe 2b. Alles andere bleibt gleich.
+
 ## 2. Architektur (Vorschlag)
 
 ```
@@ -68,7 +70,12 @@ Das ist **mehr als der Telefon-Lio heute kann** (Parität ist damit überschritt
 | Hausleistung | Preis, Uhrzeit und Folgebelegung kommen aus frontdesk, nie vom Modell. Das Modell nennt nur, was das Werkzeug zurückgibt |
 | Abnahme | Rotproben: Fremdes „Ja“ aus dem Fernseher bucht nicht, Doppel-„Ja“ bucht einmal, Folgebelegung lehnt ab, Aufruf ohne Personenprüfung lehnt ab, Rechnungsdetails stehen nicht im Betriebsprotokoll |
 
-Offen für Thomas später: ab wann die Schreibsperre für Bergsonne fällt, und ob die Fähigkeit auch am Telefon-Lio ergänzt wird (sonst weichen Gerät und Telefon ab).
+**Entschieden (Thomas 28.11.2026): Rechnung einsehen und Late Check-out gehen am Zimmergerät per Sprache, aber bewusst NICHT am öffentlichen Telefon-Lio**, aus Datensicherheits- und Datenschutzgründen. Gerät und Telefon weichen hier gewollt voneinander ab; die Parität mit dem Telefon-Lio gilt für alles andere weiter. Folgen:
+
+- `Folio_Read` und `LateCheckout` werden **nur** dem Gerätetoken (`kind: appliance`) zugeteilt. Sie stehen in keiner Capability-Liste des Telefon-Lio und werden dort nicht ergänzt. Der Lio-Thread soll das in der Capability-Pflege als „nur Gerät“ vermerken, damit sie beim Angleichen nicht versehentlich ans Telefon wandern.
+- Der Router lehnt beide Routen für jeden anderen Aufrufer ab (Rotprobe: Telefon-Aufruf und Aufruf mit Gast-Token der App ohne Gerätebindung → abgelehnt; App-Zugriff auf die Rechnung bleibt der eigene Weg der App mit Gast-Token).
+- Die Abweichung steht als Ausnahme in der Paritätstabelle (Abschnitt 1), nicht als Lücke.
+- Offen bleibt nur: ab wann die Schreibsperre für Bergsonne fällt (Thomas).
 
 ## 3. Wissensquellen ohne zweiten Pflegeweg
 

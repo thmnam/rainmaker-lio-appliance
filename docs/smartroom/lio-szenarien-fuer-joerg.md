@@ -30,4 +30,4 @@ Im Zimmer steht ein Lio-Gerät aus Holz. Der Gast spricht es an, es antwortet in
 - Wie das Gerät genau aussieht, welches Holz, wie groß: noch Entwurf, es gibt noch kein Muster.
 - Das Wort, mit dem der Gast Lio anspricht.
 - Wie lange das Gerät in Zimmer 13 getestet wird und wann: abhängig von Freigaben von Thomas.
-- Rechnung einsehen und späterer Check-out per Sprache sind **neu** gegenüber dem Telefon-Lio und müssen erst gebaut und im Haus geprüft werden. Entscheidung Thomas 22.11.: soll am Gerät gehen, jeweils nach Preis und ausdrücklichem Ja.
+- Rechnung einsehen und späterer Check-out per Sprache sind **neu** gegenüber dem Telefon-Lio und müssen erst gebaut und im Haus geprüft werden. Entscheidung Thomas: soll am Gerät gehen, jeweils nach Preis und ausdrücklichem Ja. Am öffentlichen Telefon gibt es beides bewusst **nicht** (Datensicherheit und Datenschutz, Thomas 28.11.2026).
